@@ -1,0 +1,50 @@
+﻿@model RegisterViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card card-theme">
+                <div class="card-header">Kaydol</div>
+                <div class="card-body">
+                    <form role="form" method="POST" asp-controller="Auth" asp-action="Register">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-end" asp-for="EmailAddress"></label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control" asp-for="EmailAddress" required>
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-end" asp-for="Password"></label>
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control" asp-for="Password" required>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-end" asp-for="PasswordConfirm">Şifre (Tekrar)</label>
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" asp-for="PasswordConfirm" required>
+                                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Kaydol
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

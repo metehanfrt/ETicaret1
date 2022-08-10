@@ -1,0 +1,67 @@
+﻿@using System.Security.Claims
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-1">
+    <div class="container">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <img src="~/img/logo.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex ms-auto col-lg-6 col-md-4" asp-controller="Product" asp-action="Search" method="post">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="query" value="@ViewBag.Query">
+                    <button class="btn btn-outline-success" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" asp-controller="Home" asp-action="Index">Anasayfa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link position-relative" asp-controller="Cart" asp-action="Index">
+                        <i class="fa fa-shopping-cart"></i> Sepetim
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-theme">
+                            99+
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
+                    </a>
+                </li>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            @User.Identity.Name
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" asp-controller="User" asp-action="Profile">Profilim</a></li>
+                            <li><a class="dropdown-item" asp-controller="Order" asp-action="Index">Siparişlerim</a></li>
+                            <li><a class="dropdown-item" asp-controller="Setting" asp-action="Index">Ayarlar</a></li>
+                            @*@if (User.IsInRole("SuperAdmin"))*@
+                            @if (User.Claims.Any(e => e.Type == ClaimTypes.Role && (e.Value == "SuperAdmin" || e.Value.EndsWith("Manager"))))
+                            {
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Home" asp-action="Index">Yönetim Paneli</a></li>
+                            }
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" asp-controller="Auth" asp-action="Logout">Çıkış</a></li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Auth" asp-action="Login">Giriş Yap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" asp-controller="Auth" asp-action="Register">Üye Ol</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- NAVBAR -->

@@ -1,0 +1,67 @@
+﻿@model ProductDetailViewModel
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            @if (@Model.ProductCategories.Count > 0)
+            {
+                <li class="breadcrumb-item"><a href="#">@Model.ProductCategories[0].Name</a></li>
+            }
+            <li class="breadcrumb-item active" aria-current="page">
+                @Model.Product.Name
+            </li>
+        </ol>
+    </nav>
+    <div class="bg-content">
+        <div class="row">
+            @if (Model.ProductImages.Count > 0)
+            {
+                <div class="col-md-5">
+                    <img src="/uploads/@Model.ProductImages[0].ImageUrl" class="img-thumbnail"
+                     alt="@Model.Product.Name">
+                    <hr>
+                    <div class="row">
+                        @foreach (var image in Model.ProductImages)
+                        {
+                            <div class="col-md-3">
+                                <a href="#">
+                                    <img src="/uploads/@image.ImageUrl" class="img-thumbnail"
+                                 alt="@Model.Product.Name"
+                                 style="width: 100px; height: 100px;">
+                                </a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-5">
+                    Ürün fotoğrafı eklenmemiş
+                </div>
+            }
+            <div class="col-md-7">
+                <h1>@Model.Product.Name</h1>
+                <p class="price">@Model.Product.Price ₺</p>
+                <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs mt-5" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" aria-current="page" data-bs-toggle="tab" data-bs-target="#t1">Ürün Açıklaması</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" href="#" data-bs-toggle="tab" data-bs-target="#t2">Yorumlar</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="t1">
+                @Model.Product.Description
+            </div>
+            <div role="tabpanel" class="tab-pane" id="t2">
+                Yorum yapılmamış...
+            </div>
+        </div>
+    </div>
+</div>

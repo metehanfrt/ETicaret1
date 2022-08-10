@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@await Component.InvokeAsync("Slider")
+
+<!-- PRODUCTS -->
+<div class="container">
+    <div class="products mb-4">
+        <div class="card card-theme">
+            <div class="card-header">Öne Çıkan Ürünler</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?1"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?2"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?3"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?4"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="products mb-4">
+        <div class="card card-theme">
+            <div class="card-header">Çok Satan Ürünler</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?1"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?2"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?3"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?4"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="products mb-4">
+        <div class="card card-theme">
+            <div class="card-header">İndirimli Ürünler</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?1"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?2"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?3"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                    <div class="col-md-3 product">
+                        <a asp-controller="Product" asp-action="Detail"><img src="https://picsum.photos/400/400?4"></a>
+                        <p><a asp-controller="Product" asp-action="Detail">Ürün adı</a></p>
+                        <p class="price">129 ₺</p>
+                        <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PRODUCTS -->

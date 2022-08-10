@@ -1,0 +1,81 @@
+﻿@model IEnumerable<AspNetMvcEcommerce.Data.Category>
+
+@{
+    ViewData["Title"] = "Kategori Yönetimi";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-sm btn-info">Create New</a> <!--yeni kategory ekleme butoun-->
+    <a asp-action="Index" class="btn btn-sm btn-info">Clean Filter</a> <!--Filtreyi kaldırmak için koyuyoruz-->
+</p>
+<table class="table table-bordered table-hover"> <!--table bordred çerçeveli tablo yapar, hover ise üzerine gelince değişen tablo yapar--> 
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Slug)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatetAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeletedAt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    @{ //Burayı Admin/Category sayfasında Id yerine üst kategori olarak sayı yerine tür veya yazı vermesi için yaptık
+                        var ustKategori = ((List<SelectListItem>)ViewBag.allCategories).FirstOrDefault(e => e.Value == category.ParentId.ToString());
+                        var ustKategoriAdi = "Ana Kategori";
+                        if (ustKategori != null)
+                        {
+                            ustKategoriAdi = ustKategori.Text;
+                        }
+                    } <!--CategoryController ile bağlantılı-->
+                    <a asp-action="Index" asp-route-parentId="@category.ParentId">@ustKategoriAdi</a> <!--burada link veriyoruz-->
+                </td><!--Parent Id değerini adres satırından gönderiyoruz Category Index kısımında bunu yazacağız paranteze-->
+                <td>
+                    @Html.DisplayFor(modelItem => category.Slug)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => category.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => category.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => category.CreatetAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => category.UpdatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => category.DeletedAt)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@category.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@category.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

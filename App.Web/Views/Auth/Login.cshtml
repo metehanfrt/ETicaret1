@@ -1,0 +1,60 @@
+﻿@model LoginViewModel
+@{
+    var returnUrl = Context.Request.Query["ReturnUrl"];
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card card-theme">
+                <div class="card-header">Oturum Aç</div>
+                <div class="card-body">
+                    <form role="form" method="POST" asp-controller="Auth" asp-action="Login" asp-route-returnurl="@returnUrl">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-end" asp-for="EmailAddress"></label>
+                            <div class="col-md-6">
+                                <input id="email" class="form-control" asp-for="EmailAddress">
+                                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-end" asp-for="Password"></label>
+                            <div class="col-md-6">
+                                <input id="password" class="form-control" asp-for="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-3 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" asp-for="RememberMe"> 
+                                        @Html.DisplayNameFor(e=>e.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="btn btn-link" href="#">
+                                    Şifremi Unuttum
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    Giriş yap
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,19 @@
+﻿@model Product
+
+<div class="col-md-3 product">
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id">
+        @if (Model.ProductImages.Count > 0)
+        {
+            <img src="~/uploads/@Model.ProductImages[0].ImageUrl">
+        }
+        else
+        {
+            <img src="https://via.placeholder.com/400x300?text=Ürün resmi hazırlanıyor">
+        }
+    </a>
+    <a asp-controller="Product" asp-action="Detail" asp-route-id="@Model.Id">
+        @Model.Name
+    </a>
+    <p class="price">@Model.Price ₺</p>
+    <p><a href="#" class="btn btn-theme">Sepete Ekle</a></p>
+</div>

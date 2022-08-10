@@ -1,0 +1,9 @@
+﻿<h1>Profile</h1>
+
+<b>Username:</b> @User.Identity.Name
+
+<h4>Kimlik Bilgileri</h4>
+@foreach(var claim in User.Claims)
+{
+    <li>@claim.Type : @claim.Value</li>
+}

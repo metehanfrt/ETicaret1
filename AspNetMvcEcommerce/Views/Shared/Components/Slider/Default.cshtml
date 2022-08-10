@@ -1,0 +1,54 @@
+﻿@model List<Product>
+
+<!-- SLIDER -->
+<div class="container mb-4">
+    <div id="productSlider" class="carousel rounded rounded-3" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            @for (var i = 0; i < Model.Count; i++) @*for öngüsü ile sliderleri otomatik bastırdık*@
+            {
+                <button type="button"
+                    data-bs-target="#productSlider"
+                    data-bs-slide-to="@i" @*slayderin slayt numarası 1. resim 2. resim gibi*@
+                    class="@(i==0 ? "active" : "")" aria-current="true" aria-label="@Model[i].Name"></button> @*i ninci modelin ismini yazdırdık*@
+                @*i değeri sıfırsa ilk tırnağı yaz değilse ikinci tırnağı yaz*@
+            }
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://picsum.photos/640/500?1" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>First slide label</h5>
+                    <p>Some representative placeholder content for the first slide.</p>
+                </div>
+            </div>
+
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <div class="carousel-item @(i==0 ? "active" : "")"> @*Active ifadesi ilk açıldığında gelmesi gereken slideri belirtmek içim *@
+                    @if (Model[i].ProductImages.Count > 0) @*Sliderin veri tabanında resmi varsa göster*@
+                    {
+                        <img src="~/uploads/ @Model[i].ProductImages[0].ImageUrl" class="d-block w-100" alt="..."> @*Product.cs ye gir list yap*@
+                    }
+                    else
+                    {
+                        <img src="~/uploads/slider-default.jpg" class="d-block w-100" alt="...">
+                    }
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@Model[0].Name</h5>
+                        <p>@Model[0]</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#productSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#productSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- SLIDER -->

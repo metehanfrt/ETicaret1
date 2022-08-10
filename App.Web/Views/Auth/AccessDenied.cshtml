@@ -1,0 +1,7 @@
+﻿@{
+    string ReturnUrl = Context.Request.Query["ReturnUrl"];
+    if (ReturnUrl.Contains("Admin")) Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Yetkisiz Erişim</h1>
+
+<p>Bu sayfayı görüntüleme yetkiniz bulunmamaktadır</p>

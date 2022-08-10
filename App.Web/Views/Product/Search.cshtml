@@ -1,0 +1,20 @@
+﻿@model List<Product>
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@ViewBag.Query</li>
+        </ol>
+    </nav>
+    <div class="products bg-content">
+        <div class="row">
+            @foreach (var product in Model)
+            {
+                <text>
+                    <partial name="_ProductItem" model="product">
+                </text>
+            }
+        </div>
+    </div>
+</div>

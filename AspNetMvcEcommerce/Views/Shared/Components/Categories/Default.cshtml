@@ -1,0 +1,29 @@
+﻿@model List<Category> //view componenti söylüyorum onu kullanıyorum
+
+<!-- CATEGORIES -->
+<nav class="navbar navbar-light bg-light mb-2 border-bottom border-1 shadow-sm" id="categories">
+    <div class="container">
+        <ul class="nav nav-pills">
+            
+            @foreach(var item in Model) {
+                <li class="nav-item me-4">
+                    <a class="nav-link" asp-controller="Category" asp-action="Products">@item.Name</a>
+                </li>
+            }
+            
+            <li class="nav-item dropdown me-4">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Kategori</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Alt Kategori</a></li>
+                    <li><a class="dropdown-item" href="#">Alt Kategori</a></li>
+                    <li><a class="dropdown-item" href="#">Alt Kategori</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Kampanyalar</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- CATEGORIES -->

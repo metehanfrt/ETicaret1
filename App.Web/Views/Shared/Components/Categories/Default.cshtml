@@ -1,0 +1,42 @@
+﻿@model List<Category>
+
+<!-- CATEGORIES -->
+<nav class="navbar navbar-light bg-light mb-2 border-bottom border-1 shadow-sm" id="categories">
+    <div class="container">
+        <ul class="nav nav-pills">
+
+            @foreach (var category in Model.Where(e => e.ParentId == null))
+            {
+                var subCategories = Model.Where(e => e.ParentId == category.Id).ToList();
+                if (subCategories.Count > 0)
+                {
+                    <li class="nav-item dropdown me-4">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@category.Name</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Category" asp-action="Products" asp-route-categoryId="@category.Id">
+                                    Tümü
+                                </a>
+                            </li>
+                            @foreach (var subCategory in subCategories)
+                            {
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Category" asp-action="Products" asp-route-categoryId="@subCategory.Id">
+                                        @subCategory.Name
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item me-4">
+                        <a class="nav-link" asp-controller="Category" asp-action="Products" asp-route-categoryId="@category.Id">@category.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</nav>
+<!-- CATEGORIES -->

@@ -1,0 +1,90 @@
+﻿@model ProductListViewModel
+
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
+            @if (Model.ActiveCategory.ParentCategory != null)
+            {
+                <li class="breadcrumb-item" aria-current="page">
+                    <a asp-controller="Category" asp-action="Products" asp-route-categoryId="@Model.ActiveCategory.ParentCategory.Id">
+                        @Model.ActiveCategory.ParentCategory.Name
+                    </a>
+                </li>
+            }
+            <li class="breadcrumb-item active" aria-current="page">@Model.ActiveCategory.Name</li>
+        </ol>
+    </nav>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card card-theme">
+                <div class="card-header">@Model.ActiveCategory.Name</div>
+                <div class="card-body">
+                    @{
+                        var subCategories1 = Model.AllCategories.Where(e => e.ParentId == Model.ActiveCategory.Id).ToList();
+                    }
+                    @if (subCategories1.Count > 0)
+                    {
+                        <h3>Alt Kategoriler</h3>
+                        <div class="list-group categories">
+                            @foreach (var subCategory1 in subCategories1)
+                            {
+                                <a asp-controller="Category" asp-action="Products" asp-route-categoryId="@subCategory1.Id" class="list-group-item">
+                                    <i class="fa fa-television"></i> @subCategory1.Name
+                                </a>
+
+                                <div style="margin-left: 10px;">
+                                    @{
+                                        var subCategories2 = Model.AllCategories.Where(e => e.ParentId == subCategory1.Id).ToList();
+                                    }
+                                    @foreach (var subCategory2 in subCategories2)
+                                    {
+                                        <a asp-controller="Category" asp-action="Products" asp-route-categoryId="@subCategory2.Id">
+                                            <i class="fa fa-television"></i> @subCategory2.Name
+                                        </a>
+
+                                        <br />
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    <h3 class="mt-4">Fiyat Aralığı</h3>
+                    <form>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> 100-200
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> 200-300
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="products bg-content">
+                Sırala
+                <a href="#" class="btn btn-outline-secondary">Çok Satanlar</a>
+                <a href="#" class="btn btn-outline-secondary">Yeni Ürünler</a>
+                <hr>
+                <div class="row">
+                    @foreach (var product in Model.Products)
+                    {
+                        <text>
+                            <partial name="_ProductItem" model="product">
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
